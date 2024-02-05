@@ -10,7 +10,7 @@ using school_system.Data;
 
 namespace school_system.Migrations
 {
-    [DbContext(typeof(schoolDbContext))]
+    [DbContext(typeof(SchoolDbContext))]
     partial class schoolDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

@@ -4,9 +4,9 @@ using school_system.Models;
 
 namespace school_system.Data
 {
-    public class schoolDbContext : DbContext
+    public class SchoolDbContext : DbContext
     {
-        public schoolDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+        public SchoolDbContext(DbContextOptions<SchoolDbContext> dbContextOptions) : base(dbContextOptions)
         {
 
         }

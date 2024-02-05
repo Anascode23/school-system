@@ -11,7 +11,7 @@ using school_system.Data;
 
 namespace school_system.Migrations
 {
-    [DbContext(typeof(schoolDbContext))]
+    [DbContext(typeof(SchoolDbContext))]
     [Migration("20240204181106_inital migration")]
     partial class initalmigration
     {
