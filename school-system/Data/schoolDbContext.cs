@@ -11,7 +11,7 @@ namespace school_system.Data
 
         }
 
-        public DbSet<Student> students { get; set; }
-        public DbSet<Course> courses { get; set; }
+        public DbSet<Student> Students { get; set; }
+        public DbSet<Course> Courses { get; set; }
     }
 }

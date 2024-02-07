@@ -12,8 +12,8 @@ using school_system.Data;
 namespace school_system.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20240204181106_inital migration")]
-    partial class initalmigration
+    [Migration("20240207133601_StudentCourse migration")]
+    partial class StudentCoursemigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,16 +25,28 @@ namespace school_system.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.Property<int>("CoursesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("CoursesId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("CourseStudent");
+                });
+
             modelBuilder.Entity("school_system.Models.Course", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("name")
                         .IsRequired()
@@ -47,9 +59,9 @@ namespace school_system.Migrations
                     b.Property<DateTime>("startdate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("courses");
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("school_system.Models.Student", b =>
@@ -73,7 +85,22 @@ namespace school_system.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("students");
+                    b.ToTable("Students");
+                });
+
+            modelBuilder.Entity("CourseStudent", b =>
+                {
+                    b.HasOne("school_system.Models.Course", null)
+                        .WithMany()
+                        .HasForeignKey("CoursesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("school_system.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -6,5 +6,9 @@
         public string Name { get; set; }
         public int age { get; set; }
         public string address { get; set; }
+
+
+
+        public ICollection<Course> Courses { get; set; }
     }
 }

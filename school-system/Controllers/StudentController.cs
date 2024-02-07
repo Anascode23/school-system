@@ -27,7 +27,7 @@ namespace school_system.Controllers
 
         [HttpGet]
         [Route("GetById")]
-        public IActionResult GetById(int id)
+        public IActionResult GetStudentById(int id)
         {
             Student student = _student.GetStudentById(id);
             if (student == null)
@@ -39,7 +39,7 @@ namespace school_system.Controllers
 
         [HttpPost]
         [Route("CreatingStudent")]
-        public IActionResult Create(Student student)
+        public IActionResult CreateStudent(Student student)
         {
             int st = _student.CreateStudent(student);
             if (st <= 0)
@@ -47,11 +47,11 @@ namespace school_system.Controllers
                 return BadRequest("Failed to create student");
             }
             else
-                return Ok("Added student" + st);
+                return Ok("Added student");
         }
         [HttpPut]
-        [Route("Edit")]
-        public IActionResult Update(Student student)
+        [Route("EditDeleteStudent")]
+        public IActionResult UpdateStudent(Student student)
         {
             int st = _student.UpdateStudent(student);
             if (st <= 0)
@@ -59,12 +59,12 @@ namespace school_system.Controllers
                 return BadRequest("Failed to edit student");
             }
             else
-                return Ok("Updated student" + st);
+                return Ok("Updated student");
         }
 
         [HttpDelete]
-        [Route("delete")]
-        public IActionResult Delete(int id)
+        [Route("DeleteStudent")]
+        public IActionResult DeleteStudent(int id)
         {
             int st = _student.DeleteStudent(id);
             if (st <= 0)
@@ -72,7 +72,7 @@ namespace school_system.Controllers
                 return BadRequest("Failed to Delete student");
             }
             else
-                return Ok("Deleted student" + st);
+                return Ok("Deleted student");
         }
 
     }

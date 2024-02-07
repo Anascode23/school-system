@@ -4,10 +4,11 @@ namespace school_system.Repositories.Interfaces
 {
     public interface ICourse : IDisposable
     {
-        IEnumerable<Course> GetAllStudents();
-        Course GetCourse(int id);
+        IEnumerable<Course> GetAllCourses();
+        Course GetCourseById(int id);
         int CreateCourse(Course course);
         int UpdateCourse(Course course);
-        int DeleteStudent(int id);
+        int DeleteCourse(int id);
+        void Complete();
     }
 }

@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<SchoolDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("School-system")));
 
 builder.Services.AddScoped<IStudent, StudentRepository>();
+builder.Services.AddScoped<ICourse, CourseRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

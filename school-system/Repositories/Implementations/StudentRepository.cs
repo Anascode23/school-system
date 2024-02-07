@@ -21,7 +21,7 @@ namespace school_system.Repositories.Implementations
             }
             else
             {
-                _context.students.Add(student);
+                _context.Students.Add(student);
                 _context.SaveChanges();
                 result = student.Id;
             }
@@ -34,10 +34,10 @@ namespace school_system.Repositories.Implementations
             {
                 return -1;
             }
-            var y = _context.students.Where(x => x.Id == id).FirstOrDefault() ?? null;
+            var y = _context.Students.Where(x => x.Id == id).FirstOrDefault() ?? null;
             if (y != null)
             {
-                _context.students.Remove(y);
+                _context.Students.Remove(y);
                 _context.SaveChanges();
                 return id;
             }
@@ -51,19 +51,19 @@ namespace school_system.Repositories.Implementations
 
         public IEnumerable<Student> GetAllStudents()
         {
-            var x = _context.students.ToList();
+            var x = _context.Students.ToList();
             return x;
         }
 
         public Student GetStudentById(int id)
         {
-            var y = _context.students.Where(x => x.Id == id).FirstOrDefault() ?? null;
+            var y = _context.Students.Where(x => x.Id == id).FirstOrDefault() ?? null;
             return y;
         }
 
         public int UpdateStudent(Student student)
         {
-            var z = _context.students.Where(x => x.Id == student.Id).FirstOrDefault() ?? null;
+            var z = _context.Students.Where(x => x.Id == student.Id).FirstOrDefault() ?? null;
             if (z != null)
             {
                 z.Id = student.Id;
