@@ -59,7 +59,7 @@ namespace school_system.Controllers
         public IActionResult DeleteCourse(int id)
         {
             int cr = _studentCourse.DeleteCourse(id);
-            if (cr <= 0 || _studentCourse.DoesCourseHaveStudents(id))
+            if (cr <= 0 || _studentCourse.DoesCourseHaveStudents(id) == true)
             {
 
                 return BadRequest("Course has students enrolled in it");
