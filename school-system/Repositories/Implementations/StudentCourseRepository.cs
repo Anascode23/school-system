@@ -48,6 +48,27 @@ namespace school_system.Repositories.Implementations
             .ToList();
         }
 
+        public int DeleteCourse(int courseid)
+        {
+            if (courseid == 0)
+            {
+                return -1;
+            }
+            var y = _schoolDbContext.Courses.Where(x => x.Id == courseid).FirstOrDefault() ?? null;
+            if (y != null)
+            {
+                _schoolDbContext.Courses.Remove(y);
+                _schoolDbContext.SaveChanges();
+                return courseid;
+            }
+            return 0;
+        }
+
+        public bool DoesCourseHaveStudents(int courseId)
+        {
+            return _schoolDbContext.StudentCourses.Any(e => e.CourseId == courseId);
+        }
+
 
     }
 }

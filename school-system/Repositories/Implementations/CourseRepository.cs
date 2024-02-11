@@ -35,21 +35,6 @@ namespace school_system.Repositories.Implementations
             return result;
         }
 
-        public int DeleteCourse(int id)
-        {
-            if (id == 0)
-            {
-                return -1;
-            }
-            var y = _context.Courses.Where(x => x.Id == id).FirstOrDefault() ?? null;
-            if (y != null)
-            {
-                _context.Courses.Remove(y);
-                _context.SaveChanges();
-                return id;
-            }
-            return 0;
-        }
 
         public void Dispose()
         {

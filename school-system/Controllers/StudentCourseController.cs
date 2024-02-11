@@ -54,5 +54,19 @@ namespace school_system.Controllers
             return Ok(student);
         }
 
+        [HttpDelete]
+        [Route("DeleteCourse")]
+        public IActionResult DeleteCourse(int id)
+        {
+            int cr = _studentCourse.DeleteCourse(id);
+            if (cr <= 0 || _studentCourse.DoesCourseHaveStudents(id))
+            {
+
+                return BadRequest("Course has students enrolled in it");
+            }
+            else
+                return Ok("Deleted course");
+        }
+
     }
 }

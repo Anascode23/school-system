@@ -43,7 +43,7 @@ namespace school_system.Controllers
         }
 
 
-       
+
         [HttpPost]
         [Route("CreatingCourse")]
         public IActionResult CreateCourse(Course course)
@@ -71,18 +71,7 @@ namespace school_system.Controllers
             else
                 return Ok("Updated course");
         }
-        [HttpDelete]
-        [Route("DeleteCourse")]
-        public IActionResult DeleteCourse(int id)
-        {
-            int cr = _course.DeleteCourse(id);
-            if (cr <= 0)
-            {
-                return BadRequest("Failed to Delete course");
-            }
-            else
-                return Ok("Deleted course");
-        }
+
     }
 
 }
