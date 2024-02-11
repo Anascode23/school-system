@@ -9,6 +9,7 @@
 
 
 
+        public ICollection<StudentCourse> studentCourses { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
 }

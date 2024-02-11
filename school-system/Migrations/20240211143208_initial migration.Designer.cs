@@ -12,8 +12,8 @@ using school_system.Data;
 namespace school_system.Migrations
 {
     [DbContext(typeof(SchoolDbContext))]
-    [Migration("20240207133601_StudentCourse migration")]
-    partial class StudentCoursemigration
+    [Migration("20240211143208_initial migration")]
+    partial class initialmigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -88,6 +88,21 @@ namespace school_system.Migrations
                     b.ToTable("Students");
                 });
 
+            modelBuilder.Entity("school_system.Models.StudentCourse", b =>
+                {
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("CourseId")
+                        .HasColumnType("int");
+
+                    b.HasKey("StudentId", "CourseId");
+
+                    b.HasIndex("CourseId");
+
+                    b.ToTable("StudentCourses");
+                });
+
             modelBuilder.Entity("CourseStudent", b =>
                 {
                     b.HasOne("school_system.Models.Course", null)
@@ -101,6 +116,35 @@ namespace school_system.Migrations
                         .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("school_system.Models.StudentCourse", b =>
+                {
+                    b.HasOne("school_system.Models.Course", "course")
+                        .WithMany("StudentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("school_system.Models.Student", "student")
+                        .WithMany("studentCourses")
+                        .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("course");
+
+                    b.Navigation("student");
+                });
+
+            modelBuilder.Entity("school_system.Models.Course", b =>
+                {
+                    b.Navigation("StudentCourses");
+                });
+
+            modelBuilder.Entity("school_system.Models.Student", b =>
+                {
+                    b.Navigation("studentCourses");
                 });
 #pragma warning restore 612, 618
         }

@@ -74,7 +74,6 @@ namespace school_system.Repositories.Implementations
             var z = _context.Courses.Where(x => x.Id == course.Id).FirstOrDefault() ?? null;
             if (z != null)
             {
-                z.Id = course.Id;
                 z.name = course.name;
                 z.startdate = course.startdate;
                 _context.SaveChanges();

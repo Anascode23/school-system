@@ -66,7 +66,6 @@ namespace school_system.Repositories.Implementations
             var z = _context.Students.Where(x => x.Id == student.Id).FirstOrDefault() ?? null;
             if (z != null)
             {
-                z.Id = student.Id;
                 z.Name = student.Name;
                 z.age = student.age;
                 z.address = student.address;

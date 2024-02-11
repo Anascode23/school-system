@@ -16,6 +16,7 @@ builder.Services.AddDbContext<SchoolDbContext>(options => options.UseSqlServer(b
 
 builder.Services.AddScoped<IStudent, StudentRepository>();
 builder.Services.AddScoped<ICourse, CourseRepository>();
+builder.Services.AddScoped<IStudentCourse, StudentCourseRepository>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
